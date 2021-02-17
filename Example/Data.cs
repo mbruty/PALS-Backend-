@@ -66,15 +66,33 @@ namespace Example
 
         public static void Edit(int id, User newUser)
         {
-            data.ForEach(user =>
+            // Find the id
+            for(int i = 0; i < data.Count; i++)
             {
-                if (user.id == id)
+                // Match the id
+                if(data[i].id == id)
                 {
-                    user = newUser;
+                    // If it matches, update
+                    data[i] = newUser;
                 }
-            });
+            }
 
+
+            // Save the new data
             WriteToFile();
+        }
+
+        public static User GetUser(int id)
+        {
+            for (int i = 0; i < data.Count; i++)
+            {
+                // Match the id
+                if (data[i].id == id)
+                {
+                    return data[i];
+                }
+            }
+            return null;
         }
 
         private static void WriteToFile()
